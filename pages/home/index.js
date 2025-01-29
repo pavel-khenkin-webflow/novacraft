@@ -87,19 +87,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Анимация первого набора элементов
     tlConus.fromTo(elementsConus, 
         { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: .5, stagger: 0.2 }
+        { x: '0', opacity: 1, duration: .3, stagger: 0.07 }
     )
     
     // Анимация второго набора (SVG) после первого
     .fromTo(elementsSvg, 
         { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: .3, stagger: 0.13 }
+        { x: '0', opacity: 1, duration: .15, stagger: 0.05 }, "-=.15"
     )
 
     // Анимация третьего набора (текст) после второго
     .fromTo(elementsText, 
         { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: 1, stagger: 0.2 }
+        { x: '0', opacity: 1, duration: .3, stagger: 0.07 }, "-=0.3"
     );
 
     
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     });
     // cta animation =============================
-    const cta = document.querySelectorAll('.section_cta > * *');
+    const cta = gsap.utils.toArray(['.cta__title', '.cta__desc','.lnk-block','cta__bottom-block']);
     cta.forEach(element => {
         gsap.fromTo(element,
             { opacity: 0, y: '2em' },
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { opacity: 0, y: '2em' },
             { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
                 trigger: element,
-                start: 'top 80%',
+                start: 'top bottom',
                 scrub: false
             }}
         );
