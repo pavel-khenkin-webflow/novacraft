@@ -2,7 +2,7 @@
   "name": "novacraft",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production --progress",
@@ -13,8 +13,7 @@
   "dependencies": {
     "gh-pages": "^5.0.0",
     "gsap": "npm:@gsap/shockingly@^3.12.5",
-    "lenis": "^1.1.19",
-    "swiper": "^11.1.15"
+    "lenis": "^1.1.19"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

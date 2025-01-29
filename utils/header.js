@@ -4,8 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export function setupHeaderAnimations() {
-	const navComponent = document.querySelector('.header')
-	if (!navComponent) return
+	const navComponent = document.querySelector('[data-header]')
+	if (!navComponent) return;
 
 	// Инициализация позиции заголовка
 	gsap.set(navComponent, { y: '0%' })
