@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const splitTextTwin = new SplitText('[data-split="text-twin"]', {
         type: 'words, chars',
     });
+    if (splitTextTwin) {
+        console.log(splitTextTwin, 'finded');
+    }
     // ExpertiseExpo =================================
     const splitTextExpo = new SplitText('[data-split="text-expo"]', {
         type: 'words, chars',
