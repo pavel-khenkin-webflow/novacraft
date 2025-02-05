@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const splitText = new SplitText('[data-split="text"]', {
         type: 'words, chars',
     });
+    const splitTextTwin = new SplitText('[data-split="text-twin"]', {
+        type: 'words, chars',
+    });
     // ExpertiseExpo =================================
     const splitTextExpo = new SplitText('[data-split="text-expo"]', {
         type: 'words, chars',
@@ -35,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
         stagger: 0.1,
         scrollTrigger: {
             trigger: ".section_expertise_land",
+            start: "top center",
+            end: "80% center",
+            scrub: 1,
+        },
+    });
+    gsap.to(splitTextTwin.chars, {
+        color: "#2c3d46",
+        stagger: 0.1,
+        scrollTrigger: {
+            trigger: ".section_expertise_land-twin",
             start: "top center",
             end: "80% center",
             scrub: 1,
@@ -216,6 +229,54 @@ document.addEventListener('DOMContentLoaded', function () {
     // testimonial animation =============================
     const testimonial = document.querySelectorAll('.section_testimonial > * *');
     testimonial.forEach(element => {
+        gsap.fromTo(element,
+            { opacity: 0, y: '2em' },
+            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                scrub: false
+            }}
+        );
+    });
+    // ai-video-twin animation =============================
+    const aiVideoTwin = document.querySelectorAll('.section_ai-video-twin > * *');
+    aiVideoTwin.forEach(element => {
+        gsap.fromTo(element,
+            { opacity: 0, y: '2em' },
+            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                scrub: false
+            }}
+        );
+    });
+    // containerTwin animation =============================
+    const containerTwin = document.querySelectorAll('.leadership__container_twin > * *');
+    containerTwin.forEach(element => {
+        gsap.fromTo(element,
+            { opacity: 0, y: '2em' },
+            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                scrub: false
+            }}
+        );
+    });
+    // containerTwin animation =============================
+    const how = document.querySelectorAll('.section_how > * *');
+    how.forEach(element => {
+        gsap.fromTo(element,
+            { opacity: 0, y: '2em' },
+            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                scrub: false
+            }}
+        );
+    });
+    // digital-twin animation =============================
+    const digitalTwin = document.querySelectorAll('.section_digital-twin > * *');
+    digitalTwin.forEach(element => {
         gsap.fromTo(element,
             { opacity: 0, y: '2em' },
             { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
