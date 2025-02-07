@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     });
     // cta animation =============================
-    const cta = gsap.utils.toArray(['.cta__title', '.cta__desc','.lnk-block','cta__bottom-block']);
+    const cta = document.querySelectorAll('.section_cta > *');
     cta.forEach(element => {
         gsap.fromTo(element,
             { opacity: 0, y: '2em' },
