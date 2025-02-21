@@ -17,69 +17,60 @@ document.addEventListener('DOMContentLoaded', function () {
     setupHeaderAnimations();
 
     // Expertise =================================
-    const splitText = new SplitText('[data-split="text"]', {
-        type: 'words, chars',
-    });
-    const splitTextTwin = new SplitText('[data-split="text-twin"]', {
-        type: 'words, chars',
-    });
-    if (splitTextTwin) {
-        console.log(splitTextTwin, 'finded');
+    const splitText = document.querySelector('[data-split="text"]');
+    if (splitText) {
+        const splitTextInstance = new SplitText(splitText, {
+            type: 'words, chars',
+        });
+        gsap.to(splitTextInstance.chars, {
+            color: "#2c3d46",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: ".section_expertise_land",
+                start: "top center",
+                end: "80% center",
+                scrub: 1,
+            },
+        });
     }
+
     // ExpertiseExpo =================================
-    const splitTextExpo = new SplitText('[data-split="text-expo"]', {
-        type: 'words, chars',
-    });
+    const splitTextExpo = document.querySelector('[data-split="text-expo"]');
+    if (splitTextExpo) {
+        const splitTextExpoInstance = new SplitText(splitTextExpo, {
+            type: 'words, chars',
+        });
+        gsap.to(splitTextExpoInstance.chars, {
+            color: "#2c3d46",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: ".section_expertise",
+                start: "top center",
+                end: "60% center",
+                scrub: 1,
+            },
+        });
+    };
 
     // Promo =====================================
-    const splitTextPromo = new SplitText('.section_promo [data-split="text-promo"]', {
-        type: 'words, chars',
-    });
-
-    gsap.to(splitText.chars, {
-        color: "#2c3d46",
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: ".section_expertise_land",
-            start: "top center",
-            end: "80% center",
-            scrub: 1,
-        },
-    });
-    gsap.to(splitTextTwin.chars, {
-        color: "#2c3d46",
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: ".section_expertise_land-twin",
-            start: "top center",
-            end: "80% center",
-            scrub: 1,
-        },
-    });
-    gsap.to(splitTextExpo.chars, {
-        color: "#2c3d46",
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: ".section_expertise",
-            start: "top center",
-            end: "60% center",
-            scrub: 1,
-        },
-    });
-
-    gsap.to(splitTextPromo.chars, {
-        color: "#2c3d46",
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: ".section_promo",
-            start: "top center",
-            end: "80% center",
-            scrub: 1,
-        },
-    });
+    const splitTextPromo = document.querySelector('.section_promo [data-split="text-promo"]');
+    if (splitTextPromo) {
+        const splitTextPromoInstance = new SplitText(splitTextPromo, {
+            type: 'words, chars',
+        });
+        gsap.to(splitTextPromoInstance.chars, {
+            color: "#2c3d46",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: ".section_promo",
+                start: "top center",
+                end: "80% center",
+                scrub: 1,
+            },
+        });
+    };
 
     // SVG container =============================
-
     const tlConus = gsap.timeline({
         scrollTrigger: {
             trigger: '.leadership__svg-container',
@@ -88,24 +79,24 @@ document.addEventListener('DOMContentLoaded', function () {
             scrub: false,
         }
     });
-    
+
     // Функция для сортировки и получения элементов по data-атрибуту
     function getSortedElements(selector) {
         return Array.from(document.querySelectorAll(selector))
             .sort((a, b) => a.getAttribute(selector.replace(/[\[\]]/g, '')) - b.getAttribute(selector.replace(/[\[\]]/g, '')));
     }
-    
+
     // Получаем и сортируем элементы
     const elementsConus = getSortedElements('[data-animation-conus]');
     const elementsSvg = getSortedElements('[data-animation-conus-svg]');
     const elementsText = getSortedElements('[data-animation-conus-text]');
-    
+
     // Анимация первого набора элементов
     tlConus.fromTo(elementsConus, 
         { x: '-200%', opacity: 0 }, 
         { x: '0', opacity: 1, duration: .3, stagger: 0.07 }
     )
-    
+
     // Анимация второго набора (SVG) после первого
     .fromTo(elementsSvg, 
         { x: '-200%', opacity: 0 }, 
@@ -118,177 +109,275 @@ document.addEventListener('DOMContentLoaded', function () {
         { x: '0', opacity: 1, duration: .3, stagger: 0.07 }, "-=0.3"
     );
 
-    
-    
     // Vision animation =============================
     const visionElements = document.querySelectorAll('.section_vision > * *');
-    visionElements.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (visionElements.length) {
+        visionElements.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // Benefits animation =============================
     const benefitsElements = document.querySelectorAll('.section_benefits > * *');
-    benefitsElements.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (benefitsElements.length) {
+        benefitsElements.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
 
     // Leadership animation =============================
     const leadershipElements = document.querySelectorAll('.leadership__container > * *');
-    leadershipElements.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (leadershipElements.length) {
+        leadershipElements.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // Leadership animation =============================
     const leadershipElementsTitle = document.querySelectorAll('.leadership__title');
-    leadershipElementsTitle.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (leadershipElementsTitle.length) {
+        leadershipElementsTitle.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // cta animation =============================
     const cta = document.querySelectorAll('.section_cta > *');
-    cta.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (cta.length) {
+        cta.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // choise animation =============================
     const choise = document.querySelectorAll('.section_choise > * *');
-    choise.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top bottom',
-                scrub: false
-            }}
-        );
-    });
+    if (choise.length) {
+        choise.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top bottom',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // tailoredSolution animation =============================
     const tailoredSolution = document.querySelectorAll('.section_tailored-solution > * *');
-    tailoredSolution.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (tailoredSolution.length) {
+        tailoredSolution.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // coreIndustries animation =============================
     const coreIndustries = document.querySelectorAll('.section_core-industries > * *');
-    coreIndustries.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (coreIndustries.length) {
+        coreIndustries.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // servicess animation =============================
     const servicess = document.querySelectorAll('.section_services > *');
-    servicess.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (servicess.length) {
+        servicess.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // testimonial animation =============================
     const testimonial = document.querySelectorAll('.section_testimonial > * *');
-    testimonial.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (testimonial.length) {
+        testimonial.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // ai-video-twin animation =============================
     const aiVideoTwin = document.querySelectorAll('.section_ai-video-twin > * *');
-    aiVideoTwin.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (aiVideoTwin.length) {
+        aiVideoTwin.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // containerTwin animation =============================
     const containerTwin = document.querySelectorAll('.leadership__container_twin > * *');
-    containerTwin.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (containerTwin.length) {
+        containerTwin.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // containerTwin animation =============================
     const how = document.querySelectorAll('.section_how > * *');
-    how.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (how.length) {
+        how.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // digital-twin animation =============================
     const digitalTwin = document.querySelectorAll('.section_digital-twin > * *');
-    digitalTwin.forEach(element => {
-        gsap.fromTo(element,
-            { opacity: 0, y: '2em' },
-            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                scrub: false
-            }}
-        );
-    });
+    if (digitalTwin.length) {
+        digitalTwin.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // digital-twin animation =============================
+    const ourVision = document.querySelectorAll('.section_our-vision > *');
+    if (ourVision.length) {
+        ourVision.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // digital-twin animation =============================
+    const joinAbout = document.querySelectorAll('.section__join > * *');
+    if (joinAbout.length) {
+        joinAbout.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // digital-twin animation =============================
+    const serve = document.querySelectorAll('.section_serve > * *');
+    if (serve.length) {
+        serve.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // digital-twin animation =============================
+    const whoChoise = document.querySelectorAll('.section_who-choise > * *');
+    if (whoChoise.length) {
+        whoChoise.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
 
     // DropDown icon animation =============================
     const dropdownContainers = document.querySelectorAll('.dd-container.w-dropdown');
