@@ -334,20 +334,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // digital-twin animation =============================
-    const joinAbout = document.querySelectorAll('.section__join > * *');
-    if (joinAbout.length) {
-        joinAbout.forEach(element => {
-            gsap.fromTo(element,
-                { opacity: 0, y: '2em' },
-                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    scrub: false
-                }}
-            );
-        });
-    }
+    // // digital-twin animation =============================
+    // const joinAbout = document.querySelectorAll('.section__join > * *');
+    // if (joinAbout.length) {
+    //     joinAbout.forEach(element => {
+    //         gsap.fromTo(element,
+    //             { opacity: 0, y: '2em' },
+    //             { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+    //                 trigger: element,
+    //                 start: 'top 80%',
+    //                 scrub: false
+    //             }}
+    //         );
+    //     });
+    // }
 
     // digital-twin animation =============================
     const serve = document.querySelectorAll('.section_serve > * *');
@@ -364,20 +364,52 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // digital-twin animation =============================
-    const whoChoise = document.querySelectorAll('.section_who-choise > * *');
-    if (whoChoise.length) {
-        whoChoise.forEach(element => {
-            gsap.fromTo(element,
-                { opacity: 0, y: '2em' },
-                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    scrub: false
-                }}
-            );
+    // about-us why choose animation =============================
+    gsap.fromTo('.who-choise__title',
+        { opacity: 0, y: '2em' },
+        { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+            trigger: '.section_who-choise',
+            start: 'top 80%',
+            scrub: false
+        }}
+    );
+
+    const isMobile = window.innerWidth < 479;
+
+    if (isMobile) {
+        const elements = ['.first-card', '.who-choose-img_01', '.second-card', '.who-choose-img_02', '.third-card', '.who-choose-img_03', '.last-card'];
+
+        elements.forEach(selector => {
+            gsap.fromTo(selector, { opacity: 0, x: '150%' }, { opacity: 1, x: '0', scrollTrigger: {
+                trigger: selector,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+                ease: 'power1.inOut'
+            }});
         });
+    } else {
+        const whyChoose = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_who-choise",
+                start: "center center",
+                scrub: false,
+                ease: "power1.inOut"
+            }
+        });
+
+        whyChoose
+            .fromTo('.first-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'})
+            .fromTo('.who-choose-img_01', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+            .fromTo('.second-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+            .fromTo('.who-choose-img_02', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+            .fromTo('.third-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+            .fromTo('.who-choose-img_03', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+            .fromTo('.last-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%");
     }
+    
+
+
+
 
     // DropDown icon animation =============================
     const dropdownContainers = document.querySelectorAll('.dd-container.w-dropdown');
