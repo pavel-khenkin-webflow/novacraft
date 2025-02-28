@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrub: 1,
             },
         });
-    };
+    }
 
     // Promo =====================================
     const splitTextPromo = document.querySelector('.section_promo [data-split="text-promo"]');
@@ -68,46 +68,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrub: 1,
             },
         });
-    };
-
-    // SVG container =============================
-    const tlConus = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.leadership__svg-container',
-            start: 'top center',
-            end: 'bottom center',
-            scrub: false,
-        }
-    });
-
-    // Функция для сортировки и получения элементов по data-атрибуту
-    function getSortedElements(selector) {
-        return Array.from(document.querySelectorAll(selector))
-            .sort((a, b) => a.getAttribute(selector.replace(/[\[\]]/g, '')) - b.getAttribute(selector.replace(/[\[\]]/g, '')));
     }
 
-    // Получаем и сортируем элементы
+    // SVG container =============================
     const elementsConus = getSortedElements('[data-animation-conus]');
     const elementsSvg = getSortedElements('[data-animation-conus-svg]');
     const elementsText = getSortedElements('[data-animation-conus-text]');
 
-    // Анимация первого набора элементов
-    tlConus.fromTo(elementsConus, 
-        { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: .3, stagger: 0.07 }
-    )
+    if (elementsConus.length && elementsSvg.length && elementsText.length) {
+        const tlConus = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.leadership__svg-container',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: false,
+            }
+        });
 
-    // Анимация второго набора (SVG) после первого
-    .fromTo(elementsSvg, 
-        { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: .15, stagger: 0.05 }, "-=.15"
-    )
+        tlConus.fromTo(elementsConus, 
+            { x: '-200%', opacity: 0 }, 
+            { x: '0', opacity: 1, duration: .3, stagger: 0.07 }
+        )
 
-    // Анимация третьего набора (текст) после второго
-    .fromTo(elementsText, 
-        { x: '-200%', opacity: 0 }, 
-        { x: '0', opacity: 1, duration: .3, stagger: 0.07 }, "-=0.3"
-    );
+        .fromTo(elementsSvg, 
+            { x: '-200%', opacity: 0 }, 
+            { x: '0', opacity: 1, duration: .15, stagger: 0.05 }, "-=.15"
+        )
+
+        .fromTo(elementsText, 
+            { x: '-200%', opacity: 0 }, 
+            { x: '0', opacity: 1, duration: .3, stagger: 0.07 }, "-=0.3"
+        );
+    }
 
     // Vision animation =============================
     const visionElements = document.querySelectorAll('.section_vision > * *');
@@ -244,6 +236,96 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // remoteVideo animation =============================
+    const remoteVideo = document.querySelectorAll('.section_remote-video > * *');
+    if (remoteVideo.length) {
+        remoteVideo.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // remoteVideo animation =============================
+    const sConversion = document.querySelectorAll('.section_conversion > * *');
+    if (sConversion.length) {
+        sConversion.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // remoteVideo animation =============================
+    const sPresence = document.querySelectorAll('.section_presence > * *');
+    if (sPresence.length) {
+        sPresence.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // remoteVideo animation =============================
+    const sPodcast = document.querySelectorAll('.section_podcast > * *');
+    if (sPodcast.length) {
+        sPodcast.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // sRelations animation =============================
+    const sRelations = document.querySelectorAll('.section_relations > * *');
+    if (sRelations.length) {
+        sRelations.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+    // sMarketing animation =============================
+    const sMarketing = document.querySelectorAll('.section_marketing > * *');
+    if (sMarketing.length) {
+        sMarketing.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
     // testimonial animation =============================
     const testimonial = document.querySelectorAll('.section_testimonial > * *');
     if (testimonial.length) {
@@ -365,14 +447,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // about-us why choose animation =============================
-    gsap.fromTo('.who-choise__title',
-        { opacity: 0, y: '2em' },
-        { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-            trigger: '.section_who-choise',
-            start: 'top 80%',
-            scrub: false
-        }}
-    );
+    const whoChoiseTitle = document.querySelector('.who-choise__title');
+    if (whoChoiseTitle) {
+        gsap.fromTo(whoChoiseTitle,
+            { opacity: 0, y: '2em' },
+            { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                trigger: '.section_who-choise',
+                start: 'top 80%',
+                scrub: false
+            }}
+        );
+    }
 
     const isMobile = window.innerWidth < 479;
 
@@ -380,12 +465,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const elements = ['.first-card', '.who-choose-img_01', '.second-card', '.who-choose-img_02', '.third-card', '.who-choose-img_03', '.last-card'];
 
         elements.forEach(selector => {
-            gsap.fromTo(selector, { opacity: 0, x: '150%' }, { opacity: 1, x: '0', scrollTrigger: {
-                trigger: selector,
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-                ease: 'power1.inOut'
-            }});
+            const element = document.querySelector(selector);
+            if (element) {
+                gsap.fromTo(element, { opacity: 0, x: '150%' }, { opacity: 1, x: '0', scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                    ease: 'power1.inOut'
+                }});
+            }
         });
     } else {
         const whyChoose = gsap.timeline({
@@ -397,19 +485,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        whyChoose
-            .fromTo('.first-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'})
-            .fromTo('.who-choose-img_01', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-            .fromTo('.second-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-            .fromTo('.who-choose-img_02', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-            .fromTo('.third-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-            .fromTo('.who-choose-img_03', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-            .fromTo('.last-card', { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%");
+        const firstCard = document.querySelector('.first-card');
+        const whoChooseImg01 = document.querySelector('.who-choose-img_01');
+        const secondCard = document.querySelector('.second-card');
+        const whoChooseImg02 = document.querySelector('.who-choose-img_02');
+        const thirdCard = document.querySelector('.third-card');
+        const whoChooseImg03 = document.querySelector('.who-choose-img_03');
+        const lastCard = document.querySelector('.last-card');
+
+        if (firstCard && whoChooseImg01 && secondCard && whoChooseImg02 && thirdCard && whoChooseImg03 && lastCard) {
+            whyChoose
+                .fromTo(firstCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'})
+                .fromTo(whoChooseImg01, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+                .fromTo(secondCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+                .fromTo(whoChooseImg02, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+                .fromTo(thirdCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+                .fromTo(whoChooseImg03, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
+                .fromTo(lastCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%");
+        }
     }
-    
-
-
-
 
     // DropDown icon animation =============================
     const dropdownContainers = document.querySelectorAll('.dd-container.w-dropdown');
@@ -507,3 +601,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Пересоздание обработчиков при изменении ширины экрана
     window.addEventListener("resize", addEventListeners);
 });
+
+// Функция для сортировки и получения элементов по data-атрибуту
+function getSortedElements(selector) {
+    return Array.from(document.querySelectorAll(selector))
+        .sort((a, b) => a.getAttribute(selector.replace(/[\[\]]/g, '')) - b.getAttribute(selector.replace(/[\[\]]/g, '')));
+}
