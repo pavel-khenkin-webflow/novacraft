@@ -21,12 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const centerLine = document.querySelector(".burger-line_center");
     const botLine = document.querySelector(".burger-line_bot");
     const menu = document.querySelector('[data-menu]'); // Элемент меню
-    const html = document.documentElement; // Получаем html
+    const body = document.body;
     
     let isOpen = false;
+    let scrollPosition = 0;
     
     burger.addEventListener("click", () => {
         if (!isOpen) {
+            // Запоминаем текущую позицию скролла
+            scrollPosition = window.scrollY;
+    
             // Анимация бургер-меню
             gsap.to(topLine, { top: "50%", yPercent: -50, rotation: 45, duration: 0.4, ease: "power3.out" });
             gsap.to(botLine, { bottom: "50%", yPercent: 50, rotation: -45, duration: 0.4, ease: "power3.out" });
@@ -36,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
             menu.style.display = "block";
             gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power3.out" });
     
-            // Блокировка скролла (с учетом Webflow)
-            html.style.overflow = "hidden";
-            html.style.position = "fixed"; // Фиксируем страницу
-            html.style.width = "100%";
+            // Блокировка скролла (без прыжка наверх)
+            body.style.position = "fixed";
+            body.style.top = `-${scrollPosition}px`;
+            body.style.width = "100%";
     
         } else {
             // Анимация бургер-меню назад
@@ -52,13 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 menu.style.display = "none";
             }});
     
-            // Разблокировка скролла (с учетом Webflow)
-            html.style.overflow = "";
-            html.style.position = "";
-            html.style.width = "";
+            // Разблокировка скролла и возврат к позиции
+            body.style.position = "";
+            body.style.top = "";
+            window.scrollTo(0, scrollPosition);
         }
         isOpen = !isOpen;
     });
+    
     
     
     
