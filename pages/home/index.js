@@ -16,6 +16,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setupHeaderAnimations();
 
+    const burger = document.querySelector(".menu-burger");
+    const topLine = document.querySelector(".burger-line_top");
+    const centerLine = document.querySelector(".burger-line_center");
+    const botLine = document.querySelector(".burger-line_bot");
+    const menu = document.querySelector('[data-menu]'); // Элемент меню
+    const html = document.documentElement; // Получаем html
+    
+    let isOpen = false;
+    
+    burger.addEventListener("click", () => {
+        if (!isOpen) {
+            // Анимация бургер-меню
+            gsap.to(topLine, { top: "50%", yPercent: -50, rotation: 45, duration: 0.4, ease: "power3.out" });
+            gsap.to(botLine, { bottom: "50%", yPercent: 50, rotation: -45, duration: 0.4, ease: "power3.out" });
+            gsap.to(centerLine, { opacity: 0, duration: 0.2, ease: "power3.out" });
+    
+            // Открытие меню
+            menu.style.display = "block";
+            gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power3.out" });
+    
+            // Блокировка скролла (с учетом Webflow)
+            html.style.overflow = "hidden";
+            html.style.position = "fixed"; // Фиксируем страницу
+            html.style.width = "100%";
+    
+        } else {
+            // Анимация бургер-меню назад
+            gsap.to(topLine, { top: "0%", yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out" });
+            gsap.to(botLine, { bottom: "0%", yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out" });
+            gsap.to(centerLine, { opacity: 1, duration: 0.2, ease: "power3.out" });
+    
+            // Закрытие меню
+            gsap.to(menu, { x: "-100%", duration: 0.5, ease: "power3.out", onComplete: () => {
+                menu.style.display = "none";
+            }});
+    
+            // Разблокировка скролла (с учетом Webflow)
+            html.style.overflow = "";
+            html.style.position = "";
+            html.style.width = "";
+        }
+        isOpen = !isOpen;
+    });
+    
+    
+    
+    
+
+
     // Expertise =================================
     const splitText = document.querySelector('[data-split="text"]');
     if (splitText) {

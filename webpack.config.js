@@ -8,7 +8,7 @@ module.exports = {
 		historyApiFallback: true,
 	},
 	entry: {
-		home: './pages/home/index.js',
+		home: './pages/home/index.js'
 	},
 	output: {
 		path: path.join(__dirname, '/build'),
