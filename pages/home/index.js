@@ -1,21 +1,14 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import Lenis from 'lenis'
 import { setupHeaderAnimations } from '../../utils/header'
 // register plugins
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 document.addEventListener('DOMContentLoaded', function () {
-    const lenis = new Lenis();
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(time => {
-        lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     setupHeaderAnimations();
-
+    //BURGER MENU ======================================
     const burger = document.querySelector(".menu-burger");
     const topLine = document.querySelector(".burger-line_top");
     const centerLine = document.querySelector(".burger-line_center");
@@ -65,34 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    //h2 appear split animation
-    const headers = document.querySelectorAll("h2");
 
-    headers.forEach(h2 => {
-        const split = new SplitText(h2, { type: "words, chars" });
-        gsap.set(split.chars, { opacity: 0, x: 50 });
-
-        gsap.to(split.chars, {
-            opacity: 1,
-            x: 0,
-            stagger: 0.03, // Задержка между символами
-            duration: 0.2,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: h2,
-                start: "top 80%", // Анимация срабатывает, когда заголовок попадает в зону видимости
-                toggleActions: "play none none none"
-            }
-        });
-    });
-    
-    
-    
-    
-    
-
-
-    // Expertise =================================
+    // expertise =================================
     const splitText = document.querySelector('[data-split="text"]');
     if (splitText) {
         const splitTextInstance = new SplitText(splitText, {
@@ -110,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ExpertiseExpo =================================
+    // expertise-expo =================================
     const splitTextExpo = document.querySelector('[data-split="text-expo"]');
     if (splitTextExpo) {
         const splitTextExpoInstance = new SplitText(splitTextExpo, {
@@ -146,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // SVG container =============================
+    //CONUS SVG container =============================
     const elementsConus = getSortedElements('[data-animation-conus]');
     const elementsSvg = getSortedElements('[data-animation-conus-svg]');
     const elementsText = getSortedElements('[data-animation-conus-text]');
@@ -237,25 +204,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // cta animation =============================
-    const cta = document.querySelectorAll('.section_cta > *');
-    if (cta.length) {
-        cta.forEach(element => {
+    // // cta animation =============================
+    // const cta = document.querySelectorAll('.section_cta > *');
+    // if (cta.length) {
+    //     cta.forEach(element => {
+    //         gsap.fromTo(element,
+    //             { opacity: 0, y: '2em' },
+    //             { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+    //                 trigger: element,
+    //                 start: 'top 80%',
+    //                 scrub: false
+    //             }}
+    //         );
+    //     });
+    // }
+
+    // choise animation =============================
+    const choise = document.querySelectorAll('.choise__container .choise__item');
+    if (choise.length) {
+        choise.forEach(element => {
             gsap.fromTo(element,
                 { opacity: 0, y: '2em' },
                 { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
                     trigger: element,
-                    start: 'top 80%',
+                    start: 'top bottom',
                     scrub: false
                 }}
             );
         });
     }
-
-    // choise animation =============================
-    const choise = document.querySelectorAll('.section_choise > * *');
-    if (choise.length) {
-        choise.forEach(element => {
+    // choiseWrapper animation =============================
+    const choiseWrapper = document.querySelectorAll('.choise__wrapper > *');
+    if (choiseWrapper.length) {
+        choiseWrapper.forEach(element => {
             gsap.fromTo(element,
                 { opacity: 0, y: '2em' },
                 { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
@@ -313,7 +294,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // remoteVideo animation =============================
-    const remoteVideo = document.querySelectorAll('.section_remote-video > * *');
+    const remoteVideo = document.querySelectorAll('.section_remote-video > *:not(.no-animation) *');
+
     if (remoteVideo.length) {
         remoteVideo.forEach(element => {
             gsap.fromTo(element,
@@ -326,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
         });
     }
+
 
     // remoteVideo animation =============================
     const sConversion = document.querySelectorAll('.section_conversion > * *');
@@ -341,7 +324,39 @@ document.addEventListener('DOMContentLoaded', function () {
             );
         });
     }
+    // remoteVideoLabel =============================
+    const remoteVideoLabel = document.querySelector('.remote-video__label');
 
+    if (remoteVideoLabel) {
+        const h2 = remoteVideoLabel.querySelector('h2');
+        const p = remoteVideoLabel.querySelector('p');
+
+        if (h2 && p) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: remoteVideoLabel,
+                    start: 'top 80%',
+                    scrub: false
+                }
+            })
+            .fromTo(h2, { opacity: 0, y: '2em' }, { opacity: 1, y: '0em', duration: 1 })
+            .fromTo(p, { opacity: 0, y: '2em' }, { opacity: 1, y: '0em', duration: 1 }, '-=0.05'); // задержка между анимациями
+        }
+    }
+
+
+    // choiseTitle =============================
+    const choiseTitle = document.querySelectorAll('.choise__title');
+    if (choiseTitle.length) {
+            gsap.fromTo(choiseTitle,
+                { opacity: 0, y: '1em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: choiseTitle,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+    }
     // remoteVideo animation =============================
     const sPresence = document.querySelectorAll('.section_presence > * *');
     if (sPresence.length) {
@@ -522,18 +537,44 @@ document.addEventListener('DOMContentLoaded', function () {
     //     });
     // }
 
-    // digital-twin animation =============================
-    const serve = document.querySelectorAll('.section_serve > * *');
-    if (serve.length) {
-        serve.forEach(element => {
-            gsap.fromTo(element,
-                { opacity: 0, y: '2em' },
-                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                    trigger: element,
+    // section_serve animation =============================
+    const sectionServe = document.querySelector('.section_serve');
+
+    if (sectionServe) {
+        const serveLabelDesc = sectionServe.querySelector('.serve__label__desc');
+        const choiceItems = sectionServe.querySelectorAll('.choise__item');
+
+        if (serveLabelDesc || choiceItems.length) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionServe,
                     start: 'top 80%',
                     scrub: false
-                }}
-            );
+                }
+            })
+            .fromTo(serveLabelDesc, { opacity: 0, y: '2em' }, { opacity: 1, y: '0em', duration: 1 })
+            .fromTo(choiceItems, { opacity: 0, y: '2em' }, { opacity: 1, y: '0em', duration: 1, stagger: 0.2 }, '-=0.5'); // плавная анимация для всех .choise__item
+        }
+    }
+
+    //headersServe split animation
+    const headersServe = document.querySelector(".serve__label__title");
+
+    if (headersServe) {
+        const split = new SplitText(headersServe, { type: "words, chars" });
+        gsap.set(split.chars, { opacity: 0, x: 50 });
+
+        gsap.to(split.chars, {
+            opacity: 1,
+            x: 0,
+            stagger: 0.03, // Задержка между символами
+            duration: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: headersServe,
+                start: "top 80%", // Анимация срабатывает, когда заголовок попадает в зону видимости
+                toggleActions: "play none none none"
+            }
         });
     }
 
