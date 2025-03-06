@@ -58,10 +58,32 @@ document.addEventListener('DOMContentLoaded', function () {
     
             // Разблокировка скролла и возврат к позиции
             body.style.position = "";
-            body.style.top = "";
+            body.style.top = "";e
             window.scrollTo(0, scrollPosition);
         }
         isOpen = !isOpen;
+    });
+
+
+    //h2 appear split animation
+    const headers = document.querySelectorAll("h2");
+
+    headers.forEach(h2 => {
+        const split = new SplitText(h2, { type: "words, chars" });
+        gsap.set(split.chars, { opacity: 0, x: 50 });
+
+        gsap.to(split.chars, {
+            opacity: 1,
+            x: 0,
+            stagger: 0.03, // Задержка между символами
+            duration: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: h2,
+                start: "top 80%", // Анимация срабатывает, когда заголовок попадает в зону видимости
+                toggleActions: "play none none none"
+            }
+        });
     });
     
     
@@ -441,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // digital-twin animation =============================
-    const digitalTwin = document.querySelectorAll('.section_digital-twin > * *');
+    const digitalTwin = document.querySelectorAll('.section_digital-twin > *');
     if (digitalTwin.length) {
         digitalTwin.forEach(element => {
             gsap.fromTo(element,
@@ -454,6 +476,21 @@ document.addEventListener('DOMContentLoaded', function () {
             );
         });
     }
+
+        // digital-twin animation =============================
+        const digitalTwinWrapper = document.querySelectorAll('.digital-twin__cards-wrapper > *');
+        if (digitalTwinWrapper.length) {
+            digitalTwinWrapper.forEach(element => {
+                gsap.fromTo(element,
+                    { opacity: 0, y: '2em' },
+                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        scrub: false
+                    }}
+                );
+            });
+        }
 
     // digital-twin animation =============================
     const ourVision = document.querySelectorAll('.section_our-vision > *');
