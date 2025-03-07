@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         isOpen = !isOpen;
     });
 
-    //CALANDLY =================================
+    // CALENDLY =================================
     const openButtons = document.querySelectorAll("[data-calendar-open]");
     const popupCalendar = document.querySelector("[data-calendar-popup]");
     const calendar = document.querySelector("[data-calendar]");
@@ -72,36 +72,38 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!popupCalendar) return;
 
     function lockScroll() {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      body.style.overflow = "hidden";
-      body.style.paddingRight = `${scrollbarWidth}px`;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    body.style.overflow = "hidden";
+    body.style.paddingRight = `${scrollbarWidth}px`;
     }
 
     function unlockScroll() {
-      body.style.overflow = "";
-      body.style.paddingRight = "";
+    body.style.overflow = "";
+    body.style.paddingRight = "";
     }
 
     openButtons.forEach(button => {
-      button.addEventListener("click", (event) => {
+    button.addEventListener("click", (event) => {
+        if (button.getAttribute("data-calendar-open") === "none") return; // Если "none", кнопка ведет себя как ссылка
+
         event.preventDefault();
         popupCalendar.classList.add("is--open");
         lockScroll();
-      });
+    });
     });
 
     popupCalendar.addEventListener("click", (event) => {
-      if (calendar && !calendar.contains(event.target)) {
+    if (calendar && !calendar.contains(event.target)) {
         popupCalendar.classList.remove("is--open");
         unlockScroll();
-      }
+    }
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && popupCalendar.classList.contains("is--open")) {
+    if (event.key === "Escape" && popupCalendar.classList.contains("is--open")) {
         popupCalendar.classList.remove("is--open");
         unlockScroll();
-      }
+    }
     });
 
 
