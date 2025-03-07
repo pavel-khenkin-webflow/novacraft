@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.ticker.lagSmoothing(0);
 
     setupHeaderAnimations();
-    //BURGER MENU 
+    //BURGER MENU ======================================
     const burger = document.querySelector(".menu-burger");
     const topLine = document.querySelector(".burger-line_top");
     const centerLine = document.querySelector(".burger-line_center");
@@ -58,11 +58,53 @@ document.addEventListener('DOMContentLoaded', function () {
     
             // Разблокировка скролла и возврат к позиции
             body.style.position = "";
-            body.style.top = "";e
+            body.style.top = "";
             window.scrollTo(0, scrollPosition);
         }
         isOpen = !isOpen;
     });
+
+    //CALANDLY =================================
+    const openButtons = document.querySelectorAll("[data-calendar-open]");
+    const popupCalendar = document.querySelector("[data-calendar-popup]");
+    const calendar = document.querySelector("[data-calendar]");
+
+    if (!popupCalendar) return;
+
+    function lockScroll() {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      body.style.overflow = "hidden";
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    function unlockScroll() {
+      body.style.overflow = "";
+      body.style.paddingRight = "";
+    }
+
+    openButtons.forEach(button => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        popupCalendar.classList.add("is--open");
+        lockScroll();
+      });
+    });
+
+    popupCalendar.addEventListener("click", (event) => {
+      if (calendar && !calendar.contains(event.target)) {
+        popupCalendar.classList.remove("is--open");
+        unlockScroll();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && popupCalendar.classList.contains("is--open")) {
+        popupCalendar.classList.remove("is--open");
+        unlockScroll();
+      }
+    });
+
+
 
 
     //h2 appear split animation
