@@ -13,16 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const topLine = document.querySelector(".burger-line_top");
     const centerLine = document.querySelector(".burger-line_center");
     const botLine = document.querySelector(".burger-line_bot");
-    const menu = document.querySelector('[data-menu]'); // Элемент меню
+    const menu = document.querySelector('[data-menu]');
     const body = document.body;
     
     let isOpen = false;
-    let scrollPosition = 0;
     
     burger.addEventListener("click", () => {
         if (!isOpen) {
-            // Запоминаем текущую позицию скролла
-            scrollPosition = window.scrollY;
+            // Блокируем скролл без фиксации позиции
+            body.style.overflow = "hidden";
     
             // Анимация бургер-меню
             gsap.to(topLine, { top: "50%", yPercent: -50, rotation: 45, duration: 0.4, ease: "power3.out" });
@@ -31,12 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             // Открытие меню
             menu.style.display = "block";
-            gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power3.out" });
-    
-            // Блокировка скролла (без прыжка наверх)
-            body.style.position = "fixed";
-            body.style.top = `-${scrollPosition}px`;
-            body.style.width = "100%";
+            gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.7, ease: "power3.out" });
     
         } else {
             // Анимация бургер-меню назад
@@ -45,17 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
             gsap.to(centerLine, { opacity: 1, duration: 0.2, ease: "power3.out" });
     
             // Закрытие меню
-            gsap.to(menu, { x: "-100%", duration: 0.5, ease: "power3.out", onComplete: () => {
+            gsap.to(menu, { x: "-100%", duration: 0.7, ease: "power3.out", onComplete: () => {
                 menu.style.display = "none";
+                body.style.overflow = ""; // Разблокируем скролл
             }});
-    
-            // Разблокировка скролла и возврат к позиции
-            body.style.position = "";
-            body.style.top = "";
-            window.scrollTo(0, scrollPosition);
         }
         isOpen = !isOpen;
     });
+    
 
     // CALENDLY =================================
     const openButtons = document.querySelectorAll("[data-calendar-open]");
@@ -647,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     trigger: element,
                     start: 'top 80%',
                     toggleActions: 'play none none none',
-                    ease: 'power1.inOut'
+                    ease: 'power3.out'
                 }});
             }
         });
@@ -701,6 +692,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // HOME Tabs=============================
     const parent = document.querySelector("[data-service-parent]");
     const progress = document.querySelector("[data-item]");
     const services = document.querySelectorAll("[data-service]");
@@ -778,7 +770,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener("resize", addEventListeners);
 });
 
-// Функция для сортировки и получения элементов по data-атрибуту
+// Функция для сортировки и получения элементов по data-атрибуту //svg conus 
 function getSortedElements(selector) {
     return Array.from(document.querySelectorAll(selector))
         .sort((a, b) => a.getAttribute(selector.replace(/[\[\]]/g, '')) - b.getAttribute(selector.replace(/[\[\]]/g, '')));

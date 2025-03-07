@@ -1,18 +1,11 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import Lenis from 'lenis'
 import { setupHeaderAnimations } from '../../utils/header'
 // register plugins
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 document.addEventListener('DOMContentLoaded', function () {
-    const lenis = new Lenis();
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(time => {
-        lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     setupHeaderAnimations();
     //BURGER MENU ======================================
@@ -20,16 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const topLine = document.querySelector(".burger-line_top");
     const centerLine = document.querySelector(".burger-line_center");
     const botLine = document.querySelector(".burger-line_bot");
-    const menu = document.querySelector('[data-menu]'); // Элемент меню
+    const menu = document.querySelector('[data-menu]');
     const body = document.body;
     
     let isOpen = false;
-    let scrollPosition = 0;
     
     burger.addEventListener("click", () => {
         if (!isOpen) {
-            // Запоминаем текущую позицию скролла
-            scrollPosition = window.scrollY;
+            // Блокируем скролл без фиксации позиции
+            body.style.overflow = "hidden";
     
             // Анимация бургер-меню
             gsap.to(topLine, { top: "50%", yPercent: -50, rotation: 45, duration: 0.4, ease: "power3.out" });
@@ -38,12 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             // Открытие меню
             menu.style.display = "block";
-            gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power3.out" });
-    
-            // Блокировка скролла (без прыжка наверх)
-            body.style.position = "fixed";
-            body.style.top = `-${scrollPosition}px`;
-            body.style.width = "100%";
+            gsap.fromTo(menu, { x: "-100%" }, { x: "0%", duration: 0.7, ease: "power3.out" });
     
         } else {
             // Анимация бургер-меню назад
@@ -52,17 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
             gsap.to(centerLine, { opacity: 1, duration: 0.2, ease: "power3.out" });
     
             // Закрытие меню
-            gsap.to(menu, { x: "-100%", duration: 0.5, ease: "power3.out", onComplete: () => {
+            gsap.to(menu, { x: "-100%", duration: 0.7, ease: "power3.out", onComplete: () => {
                 menu.style.display = "none";
+                body.style.overflow = ""; // Разблокируем скролл
             }});
-    
-            // Разблокировка скролла и возврат к позиции
-            body.style.position = "";
-            body.style.top = "";
-            window.scrollTo(0, scrollPosition);
         }
         isOpen = !isOpen;
     });
+    
 
     // CALENDLY =================================
     const openButtons = document.querySelectorAll("[data-calendar-open]");
