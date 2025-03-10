@@ -135,366 +135,48 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
-        // digitalTwin animation =============================
-        const digitalTwin = document.querySelectorAll('.digital-twin__main > *');
-        if (digitalTwin.length) {
-            digitalTwin.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // digitalTwinCards animation =============================
-        const digitalTwinCards = document.querySelectorAll('.digital-twin__cards-wrapper > *');
-        if (digitalTwinCards.length) {
-            digitalTwinCards.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // digitalTwinBot animation =============================
-        const digitalTwinBot = document.querySelectorAll('.digital-twin__bottom');
-        if (digitalTwinBot.length) {
-            digitalTwinBot.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // twinLabelDesc animation =============================
-        const twinLabelDesc = document.querySelectorAll('.twin__label__desc.twin__label__title.service-page');
-        if (twinLabelDesc.length) {
-            twinLabelDesc.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // remoteVideoDesc animation =============================
-        const remoteVideoDesc = document.querySelectorAll('.remote-video__label p');
-        if (remoteVideoDesc.length) {
-            remoteVideoDesc.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // remoteVideoContainer animation =============================
-        const remoteVideoContainer = document.querySelectorAll('.remote-video__main__container > * *');
-        if (remoteVideoContainer.length) {
-            remoteVideoContainer.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // remoteVideoBottom animation =============================
-        const remoteVideoBottom = document.querySelectorAll('.remote-video__bottom__content');
-        if (remoteVideoBottom.length) {
-            remoteVideoBottom.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // remoteVideoBottomButton animation =============================
-        const remoteVideoBottomButton = document.querySelectorAll('.remote-video__bottom__button:not(.no-animation)');
+    // ALL CARDS IN WHEN IN VISION =====================
+    const allCardsInVision = document.querySelectorAll(".remote-video__main__content > *, .remote-video__bottom__content > *, .remote-video__bottom__button:not(.no-animation) , .digital-twin__main__info > *, .digital-twin__cards-wrapper > *, .digital-twin__bottom > *, .row-100_48 > *, .what-we-offer__content > *, .what-we-offer__content_marketing > *, .podcast__container__content__wrapper > *, .presence__info-block__content > *");
 
-        if (remoteVideoBottomButton.length) {
-            remoteVideoBottomButton.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+    if (allCardsInVision.length) {
+        allCardsInVision.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { 
+                    opacity: 1, 
+                    y: '0em', 
+                    duration: 1, 
+                    ease: "power3.out", 
+                    scrollTrigger: {
                         trigger: element,
-                        start: 'top 80%',
+                        start: "top 80%",
                         scrub: false
-                    }}
-                );
-            });
-        }
-
-        // sectionLabelPh animation =============================
-        const sectionLabelPh = document.querySelectorAll('.section__label p');
-        if (sectionLabelPh.length) {
-            sectionLabelPh.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // podcastConainer animation =============================
-        const podcastConainer = document.querySelectorAll('.podcast__container__content > * *');
-        if (podcastConainer.length) {
-            podcastConainer.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // rowOneHundred animation =============================
-        const rowOneHundred = document.querySelectorAll('.row-100_48');
-        if (rowOneHundred.length) {
-            rowOneHundred.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '2em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // sectionLabelDescription animation =============================
-        const sectionLabelDescription = document.querySelectorAll('.section-label__desc');
-        if (sectionLabelDescription.length) {
-            sectionLabelDescription.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // presenceBlock animation =============================
-        const presenceBlock = document.querySelectorAll('.presence__info-block__wrapper > *');
-        if (presenceBlock.length) {
-            presenceBlock.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // whatWeOffer animation =============================
-        const whatWeOffer = document.querySelectorAll('.what-we-offer__content > * *');
-        if (whatWeOffer.length) {
-            whatWeOffer.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-        // whatWeOfferCards animation =============================
-        const whatWeOfferCards = document.querySelectorAll('.what-we-offer__content_marketing > *');
-        if (whatWeOfferCards.length) {
-            whatWeOfferCards.forEach(element => {
-                gsap.fromTo(element,
-                    { opacity: 0, y: '3em' },
-                    { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        scrub: false
-                    }}
-                );
-            });
-        }
-
-    const isMobile = window.innerWidth < 479;
-
-    if (isMobile) {
-        const elements = ['.first-card', '.who-choose-img_01', '.second-card', '.who-choose-img_02', '.third-card', '.who-choose-img_03', '.last-card'];
-
-        elements.forEach(selector => {
-            const element = document.querySelector(selector);
-            if (element) {
-                gsap.fromTo(element, { opacity: 0, x: '150%' }, { opacity: 1, x: '0', scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none',
-                    ease: 'power1.inOut'
-                }});
-            }
-        });
-    } else {
-        const whyChoose = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".section_who-choise",
-                start: "center center",
-                scrub: false,
-                ease: "power1.inOut"
-            }
-        });
-
-        const firstCard = document.querySelector('.first-card');
-        const whoChooseImg01 = document.querySelector('.who-choose-img_01');
-        const secondCard = document.querySelector('.second-card');
-        const whoChooseImg02 = document.querySelector('.who-choose-img_02');
-        const thirdCard = document.querySelector('.third-card');
-        const whoChooseImg03 = document.querySelector('.who-choose-img_03');
-        const lastCard = document.querySelector('.last-card');
-
-        if (firstCard && whoChooseImg01 && secondCard && whoChooseImg02 && thirdCard && whoChooseImg03 && lastCard) {
-            whyChoose
-                .fromTo(firstCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'})
-                .fromTo(whoChooseImg01, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-                .fromTo(secondCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-                .fromTo(whoChooseImg02, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-                .fromTo(thirdCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-                .fromTo(whoChooseImg03, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%")
-                .fromTo(lastCard, { opacity: 0, x: '150%' }, { opacity: 1, x: '0'}, "-=70%");
-        }
-    }
-
-    // DropDown icon animation =============================
-    const dropdownContainers = document.querySelectorAll('.dd-container.w-dropdown');
-
-    dropdownContainers.forEach(dropdown => {
-        const dropdownToggle = dropdown.querySelector('.dropdown-toogle.w-dropdown-toggle');
-        const dropdownIcon = dropdown.querySelector('.dropdown-toogle__icon');
-
-        if (dropdownToggle && dropdownIcon) {
-            const observer = new MutationObserver(() => {
-                if (dropdownToggle.classList.contains('w--open')) {
-                    gsap.to(dropdownIcon, { rotationX: 180, duration: 0 });
-                } else {
-                    gsap.to(dropdownIcon, { rotationX: 0, duration: 0 });
+                    }
                 }
-            });
-
-            observer.observe(dropdownToggle, { attributes: true, attributeFilter: ['class'] });
-        }
-    });
-
-    const parent = document.querySelector("[data-service-parent]");
-    const progress = document.querySelector("[data-item]");
-    const services = document.querySelectorAll("[data-service]");
-    const images = document.querySelectorAll("[data-image]");
-    const containerWrap = document.querySelector("[data-container-wrap]");
-    const progressbarWrap = document.querySelector("[data-progressbar-wrap]");
-
-    if (!parent || !progress || services.length === 0 || images.length === 0 || !containerWrap || !progressbarWrap) return;
-
-    function updateProgress(activeService) {
-      if (!activeService) return;
-
-      const targetValue = activeService.getAttribute("data-service");
-
-      // Закрываем все элементы
-      services.forEach(s => s.classList.add("is--closed"));
-      images.forEach(img => img.classList.add("is--closed"));
-
-      // Активируем текущий
-      activeService.classList.remove("is--closed");
-      images.forEach(img => {
-        if (img.getAttribute("data-image") === targetValue) {
-          img.classList.remove("is--closed");
-        }
-      });
-
-      // **Используем requestAnimationFrame, чтобы дождаться обновления DOM**
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            // Вычисляем высоту и отступ после обновления DOM
-            const serviceHeight = activeService.offsetHeight;
-            const parentRect = parent.getBoundingClientRect();
-            const serviceRect = activeService.getBoundingClientRect();
-            const topOffset = serviceRect.top - parentRect.top;
-
-            const lookHeightElement = document.querySelector("[data-look-height]");
-            if (window.innerWidth < 479 && lookHeightElement) {
-              const lookHeightRect = lookHeightElement.getBoundingClientRect();
-              const topOffsetMobile = serviceRect.top - lookHeightRect.top;
-              progress.style.top = `${topOffsetMobile}px`;
-            } else {
-              progress.style.top = `${topOffset}px`;
-            }
-
-            // Устанавливаем height и top для data-item
-            progress.style.height = `${serviceHeight}px`;
-
-            // Обновляем высоту progressbarWrap
-            const containerHeight = containerWrap.getBoundingClientRect().height;
-            progressbarWrap.style.height = `${containerHeight}px`;
-          }, 0);
+            );
         });
-      });
     }
+    // ALL DESCRIPTIONS IN WHEN IN VISION =====================
+    const allDescsInVision = document.querySelectorAll(".remote-video__label p, .digital-twin__label p, .section__label p, .section-label__desc");
 
-    function addEventListeners() {
-      const isMobile = window.innerWidth < 479;
-      const eventType = isMobile ? "touchstart" : "click";
-
-      // Удаляем старые обработчики перед добавлением новых
-      services.forEach(service => {
-        service.removeEventListener("click", updateProgress);
-        service.removeEventListener("touchstart", updateProgress);
-
-        service.addEventListener(eventType, () => updateProgress(service));
-      });
+    if (allDescsInVision.length) {
+        allDescsInVision.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { 
+                    opacity: 1, 
+                    y: '0em', 
+                    duration: 1, 
+                    ease: "power3.out", 
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        scrub: false
+                    }
+                }
+            );
+        });
     }
-      
-
-    // Инициализация на первом элементе
-    updateProgress(services[0]);
-    addEventListeners();
-
-    // Пересоздание обработчиков при изменении ширины экрана
-    window.addEventListener("resize", addEventListeners);
 });
 
-// Функция для сортировки и получения элементов по data-атрибуту
-function getSortedElements(selector) {
-    return Array.from(document.querySelectorAll(selector))
-        .sort((a, b) => a.getAttribute(selector.replace(/[\[\]]/g, '')) - b.getAttribute(selector.replace(/[\[\]]/g, '')));
-}
+
