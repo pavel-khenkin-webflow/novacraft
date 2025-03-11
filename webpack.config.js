@@ -16,7 +16,8 @@ module.exports = {
 		marketing: './pages/marketing/index.js',
 		pricing: './pages/pricing/index.js',
 		terms: './pages/terms/index.js',
-		services: './pages/services/index.js'
+		services: './pages/services/index.js',
+		articles: './pages/articles/index.js'
 	},
 	output: {
 		path: path.join(__dirname, '/build'),

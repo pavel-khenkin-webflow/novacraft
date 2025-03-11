@@ -311,5 +311,3 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 });
-
-
