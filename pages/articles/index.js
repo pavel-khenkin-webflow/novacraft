@@ -46,6 +46,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         isOpen = !isOpen;
     });
+
+    // BACK BUTTON =================================
+    const backButton = document.querySelector("[data-historyback]");
+    if (backButton) {
+      backButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = "https://www.novacrafter.com/blog";
+        }
+      });
+    }
 });
 
 
