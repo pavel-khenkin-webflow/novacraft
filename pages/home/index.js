@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Why choose NovaCrafter? =====================
-    const whyChoise = ['.choise-title p', '.choise__container .choise__item'];
+    const whyChoise = ['.choise__desc', '.choise__item'];
     const whyChoiseElements = document.querySelectorAll(whyChoise.join(', '));
 
     if (whyChoiseElements.length) {
