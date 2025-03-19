@@ -136,21 +136,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
-    // expertise-marketing =================================
-    const splitText = document.querySelector('[data-split="text"]');
-    if (splitText) {
-        const splitTextInstance = new SplitText(splitText, {
-            type: 'words, chars',
-        });
-        gsap.to(splitTextInstance.chars, {
-            color: "#2c3d46",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: ".section_expertise_land",
-                start: "top center",
-                end: "60% center",
-                scrub: 1,
-            },
+    // // expertise-marketing =================================
+    // const splitText = document.querySelector('[data-split="text"]');
+    // if (splitText) {
+    //     const splitTextInstance = new SplitText(splitText, {
+    //         type: 'words, chars',
+    //     });
+    //     gsap.to(splitTextInstance.chars, {
+    //         color: "#2c3d46",
+    //         stagger: 0.1,
+    //         scrollTrigger: {
+    //             trigger: ".section_expertise_land",
+    //             start: "top center",
+    //             end: "60% center",
+    //             scrub: 1,
+    //         },
+    //     });
+    // }
+
+    // DIY CARDS Animation =====================
+    const diyCards = document.querySelectorAll('.diy__main > *');
+
+    if (diyCards.length) {
+        diyCards.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
         });
     }
  
@@ -372,4 +388,26 @@ document.addEventListener('DOMContentLoaded', function () {
             observer.observe(dropdownToggle, { attributes: true, attributeFilter: ['class'] });
         }
     });
+
+    // PARAGRAPH elements Animation =====================
+    const paragraphElements = document.querySelectorAll('.section-label__desc');
+
+    if (paragraphElements.length) {
+        paragraphElements.forEach(element => {
+            gsap.fromTo(element,
+                { opacity: 0, y: '2em' },
+                { opacity: 1, y: '0em', duration: 1, scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    scrub: false
+                }}
+            );
+        });
+    }
+
+
+
+
+
+
 });
