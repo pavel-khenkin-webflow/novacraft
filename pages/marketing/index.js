@@ -135,6 +135,49 @@ document.addEventListener('DOMContentLoaded', function () {
             unlockScroll();
         }
     });
+
+    // VIDEO CARDS & POPUP =================================  
+    const videoCards = document.querySelectorAll("[data-video-card]");
+    const videoPop = document.querySelector("[data-videoPop]");
+    const videoHolder = videoPop?.querySelector("[data-video-holder]");
+    const closeBtnPop = document.querySelector("[data-close-pop]");
+
+    if (!videoPop || !videoHolder) return;
+
+    // Открытие видео
+    videoCards.forEach(card => {
+      card.addEventListener("click", function () {
+        const videoSrc = card.getAttribute("data-video-card"); // Получаем src
+        if (!videoSrc) return;
+
+        videoHolder.setAttribute("src", videoSrc); // Устанавливаем src в iframe/video
+        videoPop.classList.add("is--active");
+      });
+    });
+
+    // Закрытие видео (клик вне видео)
+    videoPop.addEventListener("click", function (event) {
+      if (!event.target.closest("[data-video-holder]")) {
+        closeVideo();
+      }
+    });
+    // Закрытие видео (клик вне видео)
+    closeBtnPop.addEventListener("click", function (event) {
+        closeVideo();
+    });
+
+    // Закрытие видео по ESC
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeVideo();
+      }
+    });
+
+    // Функция закрытия
+    function closeVideo() {
+      videoPop.classList.remove("is--active");
+      videoHolder.setAttribute("src", ""); // Очищаем src, чтобы видео не продолжало играть
+    }
     
     // // expertise-marketing =================================
     // const splitText = document.querySelector('[data-split="text"]');
